@@ -5,6 +5,8 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var todos = require('./routes/todos');
 
+var app = express();
+
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

@@ -8,9 +8,10 @@
     "rules": {
         "no-unused-vars"    : ["warn"],
         "indent"            : ["warn", "tab"],
-        "quotes"            : ["warn", "double"],
+        //"quotes"            : ["warn", "double"],
         "semi"              : ["warn", "always"],
         "eqeqeq"            : ["warn", "allow-null"],
-        "no-console"        : ["off"]
+        "no-console"        : ["off"],
+		"no-undef"			: ["off"]
     }
 }
