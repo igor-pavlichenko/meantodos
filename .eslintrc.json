@@ -1,0 +1,16 @@
+{
+    "env": {
+        "es6": true,
+        "browser": true,
+        "jquery": true
+    },
+    "extends": "eslint:recommended",
+    "rules": {
+        "no-unused-vars"    : ["warn"],
+        "indent"            : ["warn", "tab"],
+        "quotes"            : ["warn", "double"],
+        "semi"              : ["warn", "always"],
+        "eqeqeq"            : ["warn", "allow-null"],
+        "no-console"        : ["off"]
+    }
+}
