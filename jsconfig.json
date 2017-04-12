@@ -13,7 +13,8 @@
 	],
 	"typeAcquisition": {
         "include": [
-            "node"
+            "node",
+			"mongojs"
         ]
     }
 }
