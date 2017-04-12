@@ -36,10 +36,10 @@ router.post('/todos', function (request, response, next) {
 	if (!todo.text || !(todo.isCompleted + '')) {
 		response.status(400);
 		response.json({
-			"error": "Invalid Date"
+			"error": "Invalid Data"
 		});
 	} else {
-		db.save(todo, function (err, result) {
+		db.todos.save(todo, function (err, result) {
 			if (err) {
 				response.send(err);
 			} else {
@@ -68,7 +68,7 @@ router.put('/todos/:id', function (request, response, next) {
 	if (!updatedObj) {
 		response.status(400);
 		response.json({
-			"error": "Invalid Date"
+			"error": "Invalid Data"
 		});
 	} else {
 		db.todos.update({
