@@ -83,4 +83,19 @@ router.put('/todos/:id', function (request, response, next) {
 	}
 });
 
+
+// Delete todo
+router.delete('/todos/:id', function (request, response, next) {
+
+	db.todos.remove({
+		_id: mongojs.ObjectId(request.params.id)
+	}, '', function (err, result) {
+		if (err) {
+			response.send(err);
+		} else {
+			response.json(result);
+		}
+	});
+});
+
 module.exports = router;
