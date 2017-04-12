@@ -28,4 +28,25 @@ router.get('/todos/:id', function (request, response, next) {
 	});
 });
 
+
+// Save/Create todo
+router.post('/todo', function (request, response, next) {
+	var todo = request.body;
+	// check for error
+	if (!todo.text || !(todo.isCompleted + '')) {
+		response.status(400);
+		response.json({
+			"error": "Invalid Date"
+		});
+	} else {
+		db.save(todo, function (err, result) {
+			if (err) {
+				response.send(err);
+			} else {
+				response.json(result);
+			}
+		});
+	}
+});
+
 module.exports = router;
