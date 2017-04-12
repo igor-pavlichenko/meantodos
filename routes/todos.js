@@ -30,7 +30,7 @@ router.get('/todos/:id', function (request, response, next) {
 
 
 // Save/Create todo
-router.post('/todo', function (request, response, next) {
+router.post('/todos', function (request, response, next) {
 	var todo = request.body;
 	// check for error
 	if (!todo.text || !(todo.isCompleted + '')) {
@@ -40,6 +40,40 @@ router.post('/todo', function (request, response, next) {
 		});
 	} else {
 		db.save(todo, function (err, result) {
+			if (err) {
+				response.send(err);
+			} else {
+				response.json(result);
+			}
+		});
+	}
+});
+
+
+// Update todo
+router.put('/todos/:id', function (request, response, next) {
+	var todo = request.body;
+	var updatedObj = {};
+
+	// update properties
+	if (todo.isCompleted) {
+		updatedObj.isCompleted = todo.isCompleted;
+	}
+
+	if (todo.text) {
+		updatedObj.text = todo.text;
+	}
+
+	// check if updated object actually got filled with some property
+	if (!updatedObj) {
+		response.status(400);
+		response.json({
+			"error": "Invalid Date"
+		});
+	} else {
+		db.todos.update({
+			_id: mongojs.ObjectId(request.params.id)
+		}, updatedObj, {}, function (err, result) {
 			if (err) {
 				response.send(err);
 			} else {
