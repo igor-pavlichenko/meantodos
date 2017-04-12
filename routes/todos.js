@@ -14,4 +14,18 @@ router.get('/todos', function (request, response, next) {
 	});
 });
 
+
+// Get single todo
+router.get('/todos/:id', function (request, response, next) {
+	db.todos.findOne({
+		_id: mongojs.ObjectId(request.params.id)
+	}, function (err, todo) {
+		if (err) {
+			response.send(err);
+		} else {
+			response.json(todo);
+		}
+	});
+});
+
 module.exports = router;
