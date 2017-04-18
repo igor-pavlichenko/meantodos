@@ -1,0 +1,19 @@
+{
+	"name": "meantodos",
+	"description": "Simple todos app the runs on the MEAN stack",
+	"main": "server.js",
+	"license": "ISC",
+	"homepage": "",
+	"private": true,
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"client/bower_components",
+		"test",
+		"tests"
+	],
+	"dependencies": {
+		"bootstrap": "v4.0.0-alpha.6"
+	}
+}
