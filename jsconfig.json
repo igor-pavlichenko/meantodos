@@ -9,7 +9,8 @@
 		"bower_components",
 		"jspm_packages",
 		"tmp",
-		"temp"
+		"temp",
+		"*/node_modules"
 	],
 	"typeAcquisition": {
         "include": [
