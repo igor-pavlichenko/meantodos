@@ -36,4 +36,29 @@ export class TodosComponent implements OnInit {
 		})
 	}
 
+	setEditState(todo, state) {
+		if (state) {
+			todo.isEditMode = state;
+		} else {
+			delete todo.isEditMode;
+		}
+	}
+
+	/**
+	 * Update the isCompleted status of the todo object
+	 * @param todo
+	 */
+	updateStatus(todo) {
+		var updatedTodo = {
+			_id: todo._id,
+			text: todo.text,
+			isCompleted: !todo.isCompleted
+		};
+
+		this.todoService.updateTodo(updatedTodo)
+			.subscribe(data => {
+				todo.isCompleted = !todo.isCompleted;
+			});
+	}
+
 }
