@@ -10,7 +10,7 @@ import { Todo } from '../../models/todo'
 	styleUrls: ['./todos.component.scss']
 })
 export class TodosComponent implements OnInit {
-	todos: Todo[];
+	todos: any[];
 
 	constructor(private todoService: TodoService) { }
 
@@ -19,7 +19,7 @@ export class TodosComponent implements OnInit {
 		this.todoService.getTodos()
 			.subscribe(todos => {
 				this.todos = todos;
-			})
+			});
 	}
 
 	addTodo(event, todoText) {
@@ -30,10 +30,10 @@ export class TodosComponent implements OnInit {
 		};
 
 		result = this.todoService.saveTodo(newTodo);
-		result.subscribe(() => {
+		result.subscribe(x => {
 			this.todos.push(newTodo);
 			todoText.value = '';
-		})
+		});
 	}
 
 	setEditMode(todo, mode) {
@@ -76,6 +76,21 @@ export class TodosComponent implements OnInit {
 					this.setEditMode(todo, false);
 				});
 		}
+	}
+
+	deleteTodo(todo) {
+		var todos = this.todos;
+
+		this.todoService.deleteTodo(todo._id)
+			.subscribe(data => {
+				if (data.n == 1) {
+					for (var i = 0; i < todos.length; i++) {
+						if (todos[i]._id == todo._id) {
+							todos.splice(i, 1);
+						}
+					}
+				}
+			})
 	}
 
 }

@@ -25,7 +25,8 @@
 		</div>
 
 		<div class="col-md-4">
-			<input type="button" class="btn btn-danger float-md-right" value="Delete">
+			<input type="button" class="btn btn-danger float-md-right" value="Delete"
+								(click)="deleteTodo(todo)">
 			<input type="button" class="btn btn-secondary float-md-right" value="Edit"
 								[disabled]="todo.isCompleted"
 								(click)="setEditMode(todo, true)">

@@ -25,4 +25,9 @@ export class TodoService {
 		return this.http.put('/api/v1/todos/' + todo._id, JSON.stringify(todo), { headers: headers })
 					.map(response => response.json());
 	}
+
+	deleteTodo(id) {
+		return this.http.delete('/api/v1/todos/' + id)
+					.map(response => response.json());
+	}
 }
