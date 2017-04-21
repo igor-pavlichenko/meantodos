@@ -18,7 +18,7 @@ export class TodosComponent implements OnInit {
 		this.todos = [];
 		this.todoService.getTodos()
 			.subscribe(todos => {
-				console.log(todos);
+				this.todos = todos;
 			})
 	}
 
