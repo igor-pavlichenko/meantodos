@@ -36,9 +36,9 @@ export class TodosComponent implements OnInit {
 		})
 	}
 
-	setEditState(todo, state) {
-		if (state) {
-			todo.isEditMode = state;
+	setEditMode(todo, mode) {
+		if (mode) {
+			todo.isEditMode = mode;
 		} else {
 			delete todo.isEditMode;
 		}
@@ -59,6 +59,23 @@ export class TodosComponent implements OnInit {
 			.subscribe(data => {
 				todo.isCompleted = !todo.isCompleted;
 			});
+	}
+
+	updateTodoText(event, todo) {
+		if (event.which === 13) {
+			todo.text = event.target.value;
+
+			var updatedTodo = {
+				_id: todo._id,
+				text: todo.text,
+				isCompleted: todo.isCompleted
+			};
+
+			this.todoService.updateTodo(updatedTodo)
+				.subscribe(data => {
+					this.setEditMode(todo, false);
+				});
+		}
 	}
 
 }
